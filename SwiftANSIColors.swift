@@ -13,6 +13,7 @@ enum ANSIColors: String {
     case magenta = "\u{001B}[0;35m"
     case cyan = "\u{001B}[0;36m"
     case white = "\u{001B}[0;37m"
+    case `default` = "\u{001B}[0;0m"
     
     func name() -> String {
         switch self {
@@ -24,11 +25,12 @@ enum ANSIColors: String {
         case .magenta: return "Magenta"
         case .cyan: return "Cyan"
         case .white: return "White"
+        case .`default`: return "Default"
         }
     }
     
     static func all() -> [ANSIColors] {
-        return [.black, .red, .green, .yellow, .blue, .magenta, .cyan, .white]
+        return [.black, .red, .green, .yellow, .blue, .magenta, .cyan, .white, .`default`]
     }
 }
 
@@ -48,5 +50,5 @@ func + (left: String, right: ANSIColors) -> String {
 // $ swift MyPlayground.playground/Contents.swift
 
 for c in ANSIColors.all() {
-    print(c + "This is printed in " + c.name())
+    print(c + "This is printed in " + c.name() + ANSIColors.default.rawValue)
 }
