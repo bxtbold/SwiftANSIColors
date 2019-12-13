@@ -16,14 +16,14 @@ enum ANSIColors: String {
     
     func name() -> String {
         switch self {
-        case black: return "Black"
-        case red: return "Red"
-        case green: return "Green"
-        case yellow: return "Yellow"
-        case blue: return "Blue"
-        case magenta: return "Magenta"
-        case cyan: return "Cyan"
-        case white: return "White"
+        case .black: return "Black"
+        case .red: return "Red"
+        case .green: return "Green"
+        case .yellow: return "Yellow"
+        case .blue: return "Blue"
+        case .magenta: return "Magenta"
+        case .cyan: return "Cyan"
+        case .white: return "White"
         }
     }
     
@@ -32,8 +32,12 @@ enum ANSIColors: String {
     }
 }
 
-func + (let left: ANSIColors, let right: String) -> String {
+func + (left: ANSIColors, right: String) -> String {
     return left.rawValue + right
+}
+
+func + (left: String, right: ANSIColors) -> String {
+    return left + right.rawValue
 }
 
 // END
@@ -44,5 +48,5 @@ func + (let left: ANSIColors, let right: String) -> String {
 // $ swift MyPlayground.playground/Contents.swift
 
 for c in ANSIColors.all() {
-    println(c + "This is printed in " + c.name())
+    print(c + "This is printed in " + c.name())
 }
